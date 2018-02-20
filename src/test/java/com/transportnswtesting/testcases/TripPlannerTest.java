@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 /**
  Created by daddyspro on 20/2/18.
  */
-public class TripPlanner {
+public class TripPlannerTest {
 
     private WebDriver driver;
 
