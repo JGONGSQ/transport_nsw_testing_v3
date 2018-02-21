@@ -1,3 +1,6 @@
+/**
+    Created by daddyspro on 20/2/18.
+ */
 package com.transportnswtesting.testcases;
 
 import com.transportnswtesting.pages.TripPlannerPage;
@@ -9,9 +12,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 
 import static org.junit.Assert.assertTrue;
 
-/**
- Created by daddyspro on 20/2/18.
- */
+
 public class TripPlannerTest {
 
     private WebDriver driver;
