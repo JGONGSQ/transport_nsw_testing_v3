@@ -2,7 +2,6 @@ package com.transportnswtesting.testcases;
 
 import io.restassured.RestAssured;
 import org.junit.Test;
-
 import java.util.List;
 
 import static io.restassured.path.json.JsonPath.from;
@@ -10,7 +9,7 @@ import static junit.framework.TestCase.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 /**
- * Created by daddyspro on 21/2/18.
+ Created by daddyspro on 21/2/18.
  */
 public class StopFinderRESTTest {
 
