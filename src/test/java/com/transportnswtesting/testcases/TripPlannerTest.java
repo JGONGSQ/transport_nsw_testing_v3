@@ -1,14 +1,11 @@
 package com.transportnswtesting.testcases;
 
+import com.transportnswtesting.pages.TripPlannerPage;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 import static org.junit.Assert.assertTrue;
 
@@ -34,41 +31,16 @@ public class TripPlannerTest {
         // get the page
         driver.get("https://transportnsw.info/trip");
 
-        // input data
-        WebElement inputFrom = driver.findElement(By.id("search-input-From"));
-        inputFrom.sendKeys("North Sydney Station");
-        inputFrom.click();
-
-        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver d) {
-                return d.findElement(By.id("suggestion-From-0")).isDisplayed();
-            }
-        });
-
-        WebElement originDropdown = driver.findElement(By.id("suggestion-From-0"));
-        originDropdown.click();
-
-        WebElement inputTo = driver.findElement(By.id("search-input-To"));
-        inputTo.sendKeys("Town Hall Station");
-        inputTo.click();
-
-        (new WebDriverWait(driver, 10)).until(new ExpectedCondition<Boolean>() {
-            public Boolean apply(WebDriver d) {
-                return d.findElement(By.id("suggestion-To-0")).isDisplayed();
-            }
-        });
-
-        WebElement destinationDropdown = driver.findElement(By.id("suggestion-To-0"));
-        destinationDropdown.click();
+        // initial the page and input data
+        TripPlannerPage page = new TripPlannerPage(driver);
+        page.searchStation("From","North Sydney Station");
+        page.searchStation("To", "Town Hall Station");
 
         // click the go button
-        WebElement goButton = driver.findElement(By.id("search-button"));
-        goButton.click();
+        page.goButton.click();
 
         // make the list of results are presented
-        WebElement tripList = driver.findElement(By.id("tp-result-list"));
-
-        assertTrue(tripList.isDisplayed());
+        assertTrue(page.resultList.isDisplayed());
 
     }
 }
