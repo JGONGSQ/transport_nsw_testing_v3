@@ -38,6 +38,10 @@ public class TripPlannerPage extends PageObject {
         super(driver);
     }
 
+    public void goToPage(){
+        driver.get("https://transportnsw.info/trip");
+    }
+
     public void searchStation(String action, String stationName) {
         if (action.equals("From")) {
             inputBox = inputFrom;
@@ -51,8 +55,11 @@ public class TripPlannerPage extends PageObject {
         inputBox.sendKeys(stationName);
         inputBox.click();
 
+//        WebDriverWait wait = new WebDriverWait(driver, 10);
+//        wait.until(ExpectedConditions.visibilityOf(dropdown));
         WebDriverWait wait = new WebDriverWait(driver, 10);
         wait.until(ExpectedConditions.visibilityOf(dropdown));
+
         dropdown.click();
 
 
