@@ -4,13 +4,15 @@
 
 package com.transportnswtesting.pages;
 
+import net.serenitybdd.core.pages.PageObject;
+import net.thucydides.core.annotations.DefaultUrl;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 
+@DefaultUrl("https://transportnsw.info/trip")
 public class TripPlannerPage extends PageObject {
 
     @FindBy(id = "search-input-From")
@@ -38,10 +40,6 @@ public class TripPlannerPage extends PageObject {
         super(driver);
     }
 
-    public void goToPage(){
-        driver.get("https://transportnsw.info/trip");
-    }
-
     public void searchStation(String action, String stationName) {
         if (action.equals("From")) {
             inputBox = inputFrom;
@@ -55,10 +53,8 @@ public class TripPlannerPage extends PageObject {
         inputBox.sendKeys(stationName);
         inputBox.click();
 
-//        WebDriverWait wait = new WebDriverWait(driver, 10);
-//        wait.until(ExpectedConditions.visibilityOf(dropdown));
-        WebDriverWait wait = new WebDriverWait(driver, 10);
-        wait.until(ExpectedConditions.visibilityOf(dropdown));
+//      new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(dropdown));
+        waitFor(ExpectedConditions.visibilityOf(dropdown));
 
         dropdown.click();
 
