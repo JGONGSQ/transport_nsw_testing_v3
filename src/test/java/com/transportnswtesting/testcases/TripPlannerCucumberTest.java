@@ -13,4 +13,4 @@ import org.junit.runner.RunWith;
         features="src/test/resources/features/TripPlanner.feature",
         glue = {"com.transportnswtesting.steps"}
 )
-public class TripPlanner {}
+public class TripPlannerCucumberTest {}

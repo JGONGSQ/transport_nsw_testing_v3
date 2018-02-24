@@ -10,7 +10,7 @@ import org.junit.runner.RunWith;
 
 @RunWith(CucumberWithSerenity.class)
 @CucumberOptions(
-        features="src/test/resources/features/stop_finder.feature",
+        features="src/test/resources/features/StopFinder.feature",
         glue = {"com.transportnswtesting.steps"}
 )
-public class StopFinder {}
+public class StopFinderCucumberTest {}
