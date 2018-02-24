@@ -1,41 +1,36 @@
 package com.transportnswtesting.testcases;
 
-import io.restassured.RestAssured;
+import com.transportnswtesting.steps.StopFinderRESTSteps;
+import net.serenitybdd.junit.runners.SerenityRunner;
+import net.thucydides.core.annotations.Steps;
 import org.junit.Test;
-import java.util.List;
-
-import static io.restassured.path.json.JsonPath.from;
-import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertTrue;
+import org.junit.runner.RunWith;
 
 /**
- Created by daddyspro on 21/2/18.
+ * Created by daddyspro on 24/2/18.
  */
+
+@RunWith(SerenityRunner.class)
 public class StopFinderRESTTest {
 
-    private String base_url = "http://www.transportnsw.info/web/XML_STOPFINDER_REQUEST" +
-            "?TfNSWSF=true" +
-            "&language=en" +
-            "&name_sf=%s" +
-            "&outputFormat=rapidJSON" +
-            "&type_sf=any" +
-            "&version=10.2.2.48";
+    @Steps
+    StopFinderRESTSteps stopFinderSteps;
 
     @Test
-    public void stopCouldBeFound() {
-        // Formate the request url
-        String url = String.format(base_url, "Wynyard Station");
+    public void canGetTheStopNameViaRESTAPI() {
+        // Given
+        stopFinderSteps.lookingForStop();
 
-        // get the response
-        String response = RestAssured.get(url).asString();
+        // When
+        stopFinderSteps.searchStation("Wynyard Station");
 
-        // read the response
-        List<String> stopName = from(response).get("locations.name");
-        List<List> modes = from(response).get("locations.modes");
+        // Then
+        stopFinderSteps.foundStation("Wynyard Station, Sydney");
 
-        // compare
-        assertEquals("Wynyard Station, Sydney", stopName.get(0));
-        assertTrue(modes.get(0).size() > 1);
+        // And
+        stopFinderSteps.travelModeIsMoreThanOne();
+
 
     }
+
 }

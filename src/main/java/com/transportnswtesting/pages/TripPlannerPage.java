@@ -21,17 +21,17 @@ public class TripPlannerPage extends PageObject {
     @FindBy(id = "search-input-To")
     private WebElement inputTo;
 
-    @FindBy(id = "suggestion-From-0")
+    @FindBy(xpath = "//*[contains(text(),'North Sydney Station')]")
     private WebElement dropdownFrom;
 
-    @FindBy(id = "suggestion-To-0")
+    @FindBy(xpath = "//*[contains(text(),'Town Hall Station')]")
     private WebElement dropdownTo;
 
     @FindBy(id = "search-button")
-    public WebElement goButton;
+    private WebElement goButton;
 
     @FindBy(id = "tp-result-list")
-    public WebElement resultList;
+    private WebElement resultList;
 
     private WebElement dropdown;
     private WebElement inputBox;
@@ -40,7 +40,33 @@ public class TripPlannerPage extends PageObject {
         super(driver);
     }
 
+    public void clickGoButton() {
+        goButton.click();
+    }
+
+    public Boolean resultListIsDisplayed() {
+        return resultList.isDisplayed();
+    }
+
+    public void searchFromStation(String fromStation) {
+        /**
+         * @param fromStation: the station name put in the From station input box, e.g. North Sydney Station
+         */
+        searchStation("From", fromStation);
+    }
+
+    public void searchToStation(String toStation) {
+        /**
+         * @param toStation: the station name put in the To station input box, e.g. Town Hall Station
+         */
+        searchStation("To", toStation);
+    }
+
     public void searchStation(String action, String stationName) {
+        /**
+         * @param action: The search action to perform for the location of input box.
+         * @param toStation: the station name put in the station input box, e.g. Town Hall Station
+         */
         if (action.equals("From")) {
             inputBox = inputFrom;
             dropdown = dropdownFrom;
@@ -53,7 +79,6 @@ public class TripPlannerPage extends PageObject {
         inputBox.sendKeys(stationName);
         inputBox.click();
 
-//      new WebDriverWait(driver, 10).until(ExpectedConditions.visibilityOf(dropdown));
         waitFor(ExpectedConditions.visibilityOf(dropdown));
 
         dropdown.click();
