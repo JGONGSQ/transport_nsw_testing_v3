@@ -19,7 +19,7 @@ public class StopFinderRESTSteps extends ScenarioSteps {
     private List<String> stopName;
     private List<List> modes;
 
-    @Step("Given Phileas is looking for a stop")
+    @Step
     public void lookingForStop() {
         base_url = "http://www.transportnsw.info/web/XML_STOPFINDER_REQUEST" +
                 "?TfNSWSF=true" +
@@ -30,7 +30,7 @@ public class StopFinderRESTSteps extends ScenarioSteps {
                 "&version=10.2.2.48";
     }
 
-    @Step("When he searches for {0}")
+    @Step
     public void searchStation(String staionName) {
         String url = String.format(base_url, staionName);
         String response = RestAssured.get(url).asString();
@@ -38,12 +38,12 @@ public class StopFinderRESTSteps extends ScenarioSteps {
         modes = from(response).get("locations.modes");
     }
 
-    @Step("Then a stop named {0} is found")
+    @Step
     public void foundStation(String realStationName) {
         assertEquals(realStationName, stopName.get(0));
     }
 
-    @Step("And the stop provided more than one mode of transport")
+    @Step
     public void travelModeIsMoreThanOne() {
         assertTrue(modes.get(0).size() > 1);
     }
