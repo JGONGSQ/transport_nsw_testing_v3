@@ -31,8 +31,11 @@ public class StopFinderRESTSteps extends ScenarioSteps {
     }
 
     @Step
-    public void searchStation(String staionName) {
-        String url = String.format(base_url, staionName);
+    public void searchStation(String stationName) {
+        /**
+         * @param stationName, the name of station to search
+         */
+        String url = String.format(base_url, stationName);
         String response = RestAssured.get(url).asString();
         stopName = from(response).get("locations.name");
         modes = from(response).get("locations.modes");
@@ -40,6 +43,9 @@ public class StopFinderRESTSteps extends ScenarioSteps {
 
     @Step
     public void foundStation(String realStationName) {
+        /**
+         * @param realStationName, the name of the station name returned from REST api.
+         */
         assertEquals(realStationName, stopName.get(0));
     }
 

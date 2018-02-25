@@ -27,7 +27,7 @@ public class TripPlannerTest {
         plannerSteps.planningTheTrip();
 
         // WHEN
-        plannerSteps.excutesFromAToB("North Sydney Station", "Town Hall Station");
+        plannerSteps.executesFromAToB("North Sydney Station", "Town Hall Station");
 
         // THEN
         plannerSteps.listOfTripsShouldBeProvided();

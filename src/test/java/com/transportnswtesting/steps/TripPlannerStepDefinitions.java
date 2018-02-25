@@ -19,8 +19,8 @@ public class TripPlannerStepDefinitions {
     }
 
     @When("he executes a trip plan from \"(.*)\" to \"(.*)\"")
-    public void excutesFromAToB(String fromStation, String toStation){
-        tripPlannerSteps.excutesFromAToB(fromStation, toStation);
+    public void executesFromAToB(String fromStation, String toStation){
+        tripPlannerSteps.executesFromAToB(fromStation, toStation);
     }
 
     @Then("a list of trips should be provided")

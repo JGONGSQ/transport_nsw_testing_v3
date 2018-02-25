@@ -14,21 +14,22 @@ public class TripPlannerSteps extends ScenarioSteps {
 
     private TripPlannerPage tripPlannerPage;
 
-//    @Step("Given Phileas is planning the trip")
     @Step
     public void planningTheTrip() {
         tripPlannerPage.open();
     }
 
-//    @Step("When he executes a trip plan from {0} to {1}")
     @Step
-    public void excutesFromAToB(String fromStation, String toStation) {
+    public void executesFromAToB(String fromStation, String toStation) {
+        /**
+         * @param fromStation The station name for "From" Field
+         * @param toStation The station name for "To" Field
+         */
         tripPlannerPage.searchFromStation(fromStation);
         tripPlannerPage.searchToStation(toStation);
         tripPlannerPage.clickGoButton();
     }
 
-//    @Step("Then a list of trips should be provided")
     @Step
     public void listOfTripsShouldBeProvided() {
         assertTrue(tripPlannerPage.resultListIsDisplayed());
