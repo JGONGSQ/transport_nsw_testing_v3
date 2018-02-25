@@ -33,7 +33,6 @@ public class TripPlannerSteps extends ScenarioSteps {
     @Step
     public void listOfTripsShouldBeProvided() {
         assertTrue(tripPlannerPage.resultListIsDisplayed());
-
     }
 
 
