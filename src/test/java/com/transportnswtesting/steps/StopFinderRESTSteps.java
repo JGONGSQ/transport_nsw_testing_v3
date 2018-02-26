@@ -1,6 +1,6 @@
 package com.transportnswtesting.steps;
 
-import io.restassured.RestAssured;
+import net.serenitybdd.rest.SerenityRest;
 import net.thucydides.core.annotations.Step;
 import net.thucydides.core.steps.ScenarioSteps;
 
@@ -37,7 +37,7 @@ public class StopFinderRESTSteps extends ScenarioSteps {
          * @param stationName, the name of station to search
          */
         String url = String.format(base_url, stationName);
-        response = RestAssured.when().get(url).asString();
+        response = SerenityRest.when().get(url).asString();
         stopName = from(response).get("locations.name");
         modes = from(response).get("locations.modes");
     }
