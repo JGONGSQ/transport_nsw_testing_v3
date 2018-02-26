@@ -18,6 +18,7 @@ public class StopFinderRESTSteps extends ScenarioSteps {
     private String base_url;
     private List<String> stopName;
     private List<List> modes;
+    private String response;
 
     @Step
     public void lookingForStop() {
@@ -36,7 +37,7 @@ public class StopFinderRESTSteps extends ScenarioSteps {
          * @param stationName, the name of station to search
          */
         String url = String.format(base_url, stationName);
-        String response = RestAssured.get(url).asString();
+        response = RestAssured.when().get(url).asString();
         stopName = from(response).get("locations.name");
         modes = from(response).get("locations.modes");
     }
