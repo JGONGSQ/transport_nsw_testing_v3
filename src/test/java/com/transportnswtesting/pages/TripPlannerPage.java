@@ -29,7 +29,7 @@ public class TripPlannerPage extends PageObject {
     private WebElement resultList;
 
     private WebElement inputBox;
-    private WebElement dropdown;
+
     private String dropDownXpath = "//*[contains(text(), 'stationName')]";
 
     public TripPlannerPage(WebDriver driver) {
@@ -73,7 +73,7 @@ public class TripPlannerPage extends PageObject {
         inputBox.sendKeys(stationName);
         inputBox.click();
 
-        dropdown = find(By.xpath(dropDownXpath.replace("stationName", stationName)));
+        WebElement dropdown = find(By.xpath(dropDownXpath.replace("stationName", stationName)));
         waitFor(ExpectedConditions.visibilityOf(dropdown));
         dropdown.click();
 
