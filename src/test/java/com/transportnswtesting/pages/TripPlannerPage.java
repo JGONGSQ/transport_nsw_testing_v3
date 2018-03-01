@@ -4,6 +4,7 @@
 
 package com.transportnswtesting.pages;
 
+import net.serenitybdd.core.annotations.findby.By;
 import net.serenitybdd.core.pages.PageObject;
 import net.thucydides.core.annotations.DefaultUrl;
 import org.openqa.selenium.WebDriver;
@@ -21,20 +22,19 @@ public class TripPlannerPage extends PageObject {
     @FindBy(id = "search-input-To")
     private WebElement inputTo;
 
-    @FindBy(xpath = "//*[contains(text(),'North Sydney Station')]")
-    private WebElement dropdownFrom;
-
-    @FindBy(xpath = "//*[contains(text(),'Town Hall Station')]")
-    private WebElement dropdownTo;
-
     @FindBy(id = "search-button")
     private WebElement goButton;
 
     @FindBy(id = "tp-result-list")
     private WebElement resultList;
 
-    private WebElement dropdown;
     private WebElement inputBox;
+    private WebElement dropdown;
+    private String dropDownXpath = "//*[contains(text(), 'stationName')]";
+
+//    @FindBy(xpath = "//*[contains(text(),'StationName')]")
+//    private WebElement dropdownTo;
+
 
     public TripPlannerPage(WebDriver driver) {
         super(driver);
@@ -69,18 +69,17 @@ public class TripPlannerPage extends PageObject {
          */
         if (action.equals("From")) {
             inputBox = inputFrom;
-            dropdown = dropdownFrom;
 
         } else if (action.equals("To")) {
             inputBox = inputTo;
-            dropdown = dropdownTo;
         }
 
         inputBox.sendKeys(stationName);
         inputBox.click();
 
-        waitFor(ExpectedConditions.visibilityOf(dropdown));
 
+        dropdown = find(By.xpath(dropDownXpath.replace("stationName", stationName)));
+        waitFor(ExpectedConditions.visibilityOf(dropdown));
         dropdown.click();
 
 
