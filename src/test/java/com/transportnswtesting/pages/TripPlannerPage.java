@@ -77,8 +77,6 @@ public class TripPlannerPage extends PageObject {
         waitFor(ExpectedConditions.visibilityOf(dropdown));
         dropdown.click();
 
-
     }
-
 
 }
