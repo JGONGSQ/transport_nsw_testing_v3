@@ -32,10 +32,6 @@ public class TripPlannerPage extends PageObject {
     private WebElement dropdown;
     private String dropDownXpath = "//*[contains(text(), 'stationName')]";
 
-//    @FindBy(xpath = "//*[contains(text(),'StationName')]")
-//    private WebElement dropdownTo;
-
-
     public TripPlannerPage(WebDriver driver) {
         super(driver);
     }
@@ -62,10 +58,10 @@ public class TripPlannerPage extends PageObject {
         searchStation("To", toStation);
     }
 
-    public void searchStation(String action, String stationName) {
+    private void searchStation(String action, String stationName) {
         /**
          * @param action: The search action to perform for the location of input box.
-         * @param toStation: the station name put in the station input box, e.g. Town Hall Station
+         * @param stationName: the station name put in the station input box, e.g. Town Hall Station
          */
         if (action.equals("From")) {
             inputBox = inputFrom;
@@ -76,7 +72,6 @@ public class TripPlannerPage extends PageObject {
 
         inputBox.sendKeys(stationName);
         inputBox.click();
-
 
         dropdown = find(By.xpath(dropDownXpath.replace("stationName", stationName)));
         waitFor(ExpectedConditions.visibilityOf(dropdown));

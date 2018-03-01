@@ -12,5 +12,5 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features="src/test/resources/features/TripPlanner.feature",
         glue = {"com.transportnswtesting.steps"}
-)
+        )
 public class TripPlannerCucumberTest {}

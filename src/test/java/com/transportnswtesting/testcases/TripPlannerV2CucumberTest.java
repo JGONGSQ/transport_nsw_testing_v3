@@ -12,7 +12,7 @@ import org.junit.runner.RunWith;
 @CucumberOptions(
         features="src/test/resources/features/TripPlannerV2.feature",
         glue = {"com.transportnswtesting.steps"}
-)
+        )
 public class TripPlannerV2CucumberTest {
 
 }
