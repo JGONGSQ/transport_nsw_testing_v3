@@ -31,22 +31,24 @@ public class StopFinderRESTSteps extends ScenarioSteps {
                 "&version=10.2.2.48";
     }
 
+    /**
+     * @param stationName, the name of station to search
+     */
     @Step
     public void searchStation(String stationName) {
-        /**
-         * @param stationName, the name of station to search
-         */
+
         String url = String.format(base_url, stationName);
         response = SerenityRest.when().get(url).asString();
         stopName = from(response).get("locations.name");
         modes = from(response).get("locations.modes");
     }
 
+    /**
+     * @param realStationName, the name of the station name returned from REST api.
+     */
     @Step
     public void foundStation(String realStationName) {
-        /**
-         * @param realStationName, the name of the station name returned from REST api.
-         */
+
         assertEquals(realStationName, stopName.get(0));
     }
 

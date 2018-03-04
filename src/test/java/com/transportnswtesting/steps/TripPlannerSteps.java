@@ -19,12 +19,14 @@ public class TripPlannerSteps extends ScenarioSteps {
         tripPlannerPage.open();
     }
 
+
+    /**
+     * @param fromStation The station name for "From" Field
+     * @param toStation The station name for "To" Field
+     */
     @Step
     public void executesFromAToB(String fromStation, String toStation) {
-        /**
-         * @param fromStation The station name for "From" Field
-         * @param toStation The station name for "To" Field
-         */
+
         tripPlannerPage.searchFromStation(fromStation);
         tripPlannerPage.searchToStation(toStation);
         tripPlannerPage.clickGoButton();

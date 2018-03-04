@@ -44,25 +44,28 @@ public class TripPlannerPage extends PageObject {
         return resultList.isDisplayed();
     }
 
+    /**
+     * @param fromStation: the station name put in the From station input box, e.g. North Sydney Station
+     */
     public void searchFromStation(String fromStation) {
-        /**
-         * @param fromStation: the station name put in the From station input box, e.g. North Sydney Station
-         */
+
         searchStation("From", fromStation);
     }
 
+    /**
+     * @param toStation: the station name put in the To station input box, e.g. Town Hall Station
+     */
     public void searchToStation(String toStation) {
-        /**
-         * @param toStation: the station name put in the To station input box, e.g. Town Hall Station
-         */
+
         searchStation("To", toStation);
     }
 
+    /**
+     * @param action: The search action to perform for the location of input box.
+     * @param stationName: the station name put in the station input box, e.g. Town Hall Station
+     */
     private void searchStation(String action, String stationName) {
-        /**
-         * @param action: The search action to perform for the location of input box.
-         * @param stationName: the station name put in the station input box, e.g. Town Hall Station
-         */
+
         if (action.equals("From")) {
             inputBox = inputFrom;
 
